@@ -1,7 +1,18 @@
 (ns user
-  (:require [ajax.core :refer [GET POST]]))
+  (:require [jayq.core :as jq :refer [$]])
+  (:require-macros [jayq.macros :refer [let-ajax]]))
 
-(POST "http://localhost:8888/jsonrpc"
+
+(let-ajax [a {:url      "http://localhost:8888/jsonrpc"
+              :dataType :json
+              :type     "POST"
+              :data     {:jsonrpc 2.0
+                         :id      6
+                         :method  "get-serial-ports"
+                         :params  []}}]
+  (println a))
+
+#_ (POST "http://localhost:8888/jsonrpc"
       {:body {:jsonrpc 2.0
               :id      6
               :method  "get-serial-ports"
@@ -9,6 +20,3 @@
        :format :json
        :handler #(println %)
        :error-handler #(println %)})
-
-
-(js/Date.)

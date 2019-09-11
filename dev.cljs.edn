@@ -1,2 +1,2 @@
-{:target :nodejs
+{;;:target :nodejs
  :main   liveprinter-clj.core}
